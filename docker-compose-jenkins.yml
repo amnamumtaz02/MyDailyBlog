@@ -13,16 +13,12 @@ services:
       - "5433:5432"
 
   app-jenkins:
-    image: node:20-alpine
+    image: mumtaz02/mydailyblog-app:latest
     container_name: blog-app-jenkins
     depends_on:
       - db-jenkins
-    working_dir: /app
-    volumes:
-      - .:/app
     environment:
       DATABASE_URL: postgresql://blogadmin:BlogPass123!@db-jenkins:5432/blogdb
-    command: sh -c "apk add --no-cache openssl && npm install && npx prisma generate && sleep 5 && npx prisma db push && npm start"
     ports:
       - "3001:3000"
 
