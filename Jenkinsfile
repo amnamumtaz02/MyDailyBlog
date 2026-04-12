@@ -16,6 +16,8 @@ pipeline {
             steps {
                 sh 'docker-compose -f docker-compose-jenkins.yml down || true'
                 sh 'docker-compose -f docker-compose-jenkins.yml up -d'
+                sh 'sleep 10'
+                sh 'docker exec blog-app-jenkins npx prisma db push'
             }
         }
     }
