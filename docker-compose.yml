@@ -4,6 +4,7 @@ services:
   db:
     image: postgres:15
     container_name: blog-db
+    restart: always
     environment:
       POSTGRES_USER: blogadmin
       POSTGRES_PASSWORD: BlogPass123!
@@ -16,6 +17,7 @@ services:
   app:
     build: .
     container_name: blog-app
+    restart: always
     depends_on:
       - db
     environment:
